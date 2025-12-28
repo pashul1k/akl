@@ -4,14 +4,15 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { LogOut, User, Briefcase, Mail, Home, Sparkles, FileText } from 'lucide-react'
+import { LogOut, User, Briefcase, Mail, Home, Sparkles, FileText, Award } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 import ProfileEditor from '@/components/admin/ProfileEditor'
 import PortfolioEditor from '@/components/admin/PortfolioEditor'
 import ContactsViewer from '@/components/admin/ContactsViewer'
 import AboutSectionEditor from '@/components/admin/AboutSectionEditor'
+import CertificateEditor from '@/components/admin/CertificateEditor'
 
-type Tab = 'profile' | 'portfolio' | 'contacts' | 'about'
+type Tab = 'profile' | 'portfolio' | 'contacts' | 'about' | 'certificates'
 
 export default function AdminPage() {
   const { data: session, status } = useSession()
@@ -42,6 +43,7 @@ export default function AdminPage() {
   const tabs = [
     { id: 'profile' as Tab, label: 'Профиль', icon: User },
     { id: 'about' as Tab, label: 'О себе', icon: FileText },
+    { id: 'certificates' as Tab, label: 'Сертификаты', icon: Award },
     { id: 'portfolio' as Tab, label: 'Портфолио', icon: Briefcase },
     { id: 'contacts' as Tab, label: 'Обращения', icon: Mail },
   ]
@@ -133,6 +135,7 @@ export default function AdminPage() {
         >
           {activeTab === 'profile' && <ProfileEditor />}
           {activeTab === 'about' && <AboutSectionEditor />}
+          {activeTab === 'certificates' && <CertificateEditor />}
           {activeTab === 'portfolio' && <PortfolioEditor />}
           {activeTab === 'contacts' && <ContactsViewer />}
         </motion.div>

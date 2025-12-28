@@ -1,7 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { BookOpen, Award, Users, Heart, Home, Target, TrendingUp, Sparkles, } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { BookOpen, Award, Users, Heart, Home, Target, TrendingUp, Sparkles, X } from 'lucide-react'
 import Image from 'next/image'
 
 const iconMap: { [key: string]: any } = {
@@ -15,14 +16,26 @@ const iconMap: { [key: string]: any } = {
   Sparkles
 }
 
+interface Certificate {
+  id: string
+  title: string
+  organization: string
+  date: string
+  image: string
+  order: number
+}
+
 interface AboutMeProps {
   data: {
     title: string
     items: string[]
   }
+  certificates: Certificate[]
 }
 
-export default function AboutMe({ data }: AboutMeProps) {
+export default function AboutMe({ data, certificates }: AboutMeProps) {
+  const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null)
+
   // Иконки для каждого пункта
   const icons = [
     BookOpen, // Образование
@@ -123,6 +136,109 @@ export default function AboutMe({ data }: AboutMeProps) {
             )
           })}
         </div>
+
+        {/* Certificates Section */}
+        {certificates && certificates.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-20 max-w-6xl mx-auto"
+          >
+            <div className="text-center mb-10">
+              <h3 className="text-3xl md:text-4xl font-bold gradient-text mb-3 inline-flex items-center gap-3">
+                <Award className="w-8 h-8" />
+                Мои сертификаты
+                <Award className="w-8 h-8" />
+              </h3>
+              <p className="text-gray-900 font-medium text-lg">
+                Подтверждение квалификации и непрерывного обучения
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {certificates.map((cert, index) => (
+                <motion.div
+                  key={cert.id}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05, y: -8 }}
+                  onClick={() => setSelectedCertificate(cert)}
+                  className="glass-card p-3 rounded-2xl shadow-soft hover:shadow-glow cursor-pointer transition-all duration-300 group"
+                >
+                  <div className="relative aspect-[3/4] mb-3 rounded-xl overflow-hidden bg-white">
+                    <Image
+                      src={cert.image}
+                      alt={cert.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                  <h4 className="text-sm font-bold text-gray-900 mb-1 line-clamp-2">
+                    {cert.title}
+                  </h4>
+                  <p className="text-xs text-gray-700 font-medium mb-1">
+                    {cert.organization}
+                  </p>
+                  <p className="text-xs text-gray-600">
+                    {cert.date}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Certificate Modal */}
+        <AnimatePresence>
+          {selectedCertificate && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedCertificate(null)}
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            >
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative max-w-4xl w-full bg-white rounded-3xl p-6 shadow-glow-purple"
+              >
+                <button
+                  onClick={() => setSelectedCertificate(null)}
+                  className="absolute top-4 right-4 w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-all hover:scale-110 z-10"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+
+                <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100">
+                  <Image
+                    src={selectedCertificate.image}
+                    alt={selectedCertificate.title}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+
+                <div className="mt-6 text-center">
+                  <h3 className="text-2xl font-bold gradient-text mb-2">
+                    {selectedCertificate.title}
+                  </h3>
+                  <p className="text-lg text-gray-900 font-semibold mb-1">
+                    {selectedCertificate.organization}
+                  </p>
+                  <p className="text-gray-700 font-medium">
+                    {selectedCertificate.date}
+                  </p>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Special highlight for Phoenix */}
         <motion.div

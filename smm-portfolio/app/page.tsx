@@ -81,11 +81,19 @@ async function getAboutSections() {
   }))
 }
 
+async function getCertificates() {
+  const certificates = await prisma.certificate.findMany({
+    orderBy: { order: 'asc' }
+  })
+  return certificates
+}
+
 export default async function Home() {
-  const [profile, portfolioItems, aboutSections] = await Promise.all([
+  const [profile, portfolioItems, aboutSections, certificates] = await Promise.all([
     getProfile(),
     getPortfolio(),
     getAboutSections(),
+    getCertificates(),
   ])
 
   // Разделить секции на aboutMe и whyMe
@@ -101,7 +109,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen">
       <Hero profile={profile} />
-      <AboutMe data={aboutMeSection} />
+      <AboutMe data={aboutMeSection} certificates={certificates} />
       <About data={whyMeSection} />
       <Portfolio items={portfolioItems} />
       <ContactForm

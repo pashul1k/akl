@@ -76,3 +76,16 @@ model AboutSection {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// Сертификаты об образовании
+model Certificate {
+  id          String   @id @default(cuid())
+  title       String
+  organization String  // например: "Expert X", "АНО ДПО НАДПО"
+  date        String   // дата получения
+  image       String   // путь к изображению сертификата
+  order       Int      @default(0) // для сортировки
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
