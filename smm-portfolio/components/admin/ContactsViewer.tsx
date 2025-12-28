@@ -2,22 +2,33 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, Clock } from 'lucide-react'
+import { Mail, Phone, Clock, MessageCircle, Instagram } from 'lucide-react'
 
 interface Contact {
   id: string
   name: string
   email: string
   phone?: string | null
+  social: string
+  socialType: string
   message: string
   isRead: boolean
+  status: string
   createdAt: string
+}
+
+const statusLabels: Record<string, { label: string; color: string; icon: string }> = {
+  pending: { label: 'На рассмотрении', color: 'bg-yellow-500', icon: '⏳' },
+  contacted: { label: 'Связалась', color: 'bg-green-500', icon: '✅' },
+  rejected: { label: 'Отказ', color: 'bg-red-500', icon: '❌' },
+  working: { label: 'Начало работы', color: 'bg-blue-500', icon: '🚀' }
 }
 
 export default function ContactsViewer() {
   const [contacts, setContacts] = useState<Contact[]>([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState<'all' | 'unread'>('all')
+  const [updatingStatus, setUpdatingStatus] = useState<string | null>(null)
 
   useEffect(() => {
     fetchContacts()
@@ -32,6 +43,29 @@ export default function ContactsViewer() {
       console.error('Error fetching contacts:', error)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const updateStatus = async (contactId: string, newStatus: string) => {
+    setUpdatingStatus(contactId)
+    try {
+      const res = await fetch(`/api/contact/${contactId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus })
+      })
+
+      if (res.ok) {
+        setContacts(contacts.map(contact =>
+          contact.id === contactId
+            ? { ...contact, status: newStatus }
+            : contact
+        ))
+      }
+    } catch (error) {
+      console.error('Error updating status:', error)
+    } finally {
+      setUpdatingStatus(null)
     }
   }
 
@@ -164,12 +198,57 @@ export default function ContactsViewer() {
                     </a>
                   </div>
                 )}
+                <div className="flex items-center gap-2 text-soft-900 font-medium">
+                  {contact.socialType === 'telegram' ? (
+                    <MessageCircle className="w-4 h-4 text-primary-600" />
+                  ) : (
+                    <Instagram className="w-4 h-4 text-primary-600" />
+                  )}
+                  <span>
+                    {contact.socialType === 'telegram' ? 'Telegram' : 'Instagram'}: {contact.social}
+                  </span>
+                </div>
               </div>
 
-              <div className="glass-card rounded-xl p-5 border-2 border-primary-100">
+              <div className="glass-card rounded-xl p-5 border-2 border-primary-100 mb-4">
                 <p className="text-soft-900 whitespace-pre-wrap font-medium leading-relaxed">
                   {contact.message}
                 </p>
+              </div>
+
+              {/* Current Status Badge */}
+              <div className="mb-3">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white shadow-soft">
+                  <span className="text-sm font-semibold text-soft-700">Статус:</span>
+                  <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg ${statusLabels[contact.status]?.color || 'bg-gray-500'} text-white text-sm font-bold`}>
+                    <span>{statusLabels[contact.status]?.icon || '❓'}</span>
+                    <span>{statusLabels[contact.status]?.label || contact.status}</span>
+                  </span>
+                </div>
+              </div>
+
+              {/* Status Change Buttons */}
+              <div className="flex flex-wrap gap-2">
+                {Object.entries(statusLabels).map(([status, { label, color, icon }]) => (
+                  <button
+                    key={status}
+                    onClick={() => updateStatus(contact.id, status)}
+                    disabled={updatingStatus === contact.id || contact.status === status}
+                    className={`px-4 py-2 rounded-xl font-bold text-sm transition-all flex items-center gap-2 ${
+                      contact.status === status
+                        ? 'bg-soft-200 text-soft-500 cursor-not-allowed'
+                        : updatingStatus === contact.id
+                        ? 'bg-soft-200 text-soft-400 cursor-wait'
+                        : 'glass-card text-soft-900 hover:shadow-soft hover:scale-105'
+                    }`}
+                  >
+                    <span>{icon}</span>
+                    <span>{label}</span>
+                    {updatingStatus === contact.id && (
+                      <div className="w-3 h-3 border-2 border-soft-900 border-t-transparent rounded-full animate-spin"></div>
+                    )}
+                  </button>
+                ))}
               </div>
             </motion.div>
           ))}
