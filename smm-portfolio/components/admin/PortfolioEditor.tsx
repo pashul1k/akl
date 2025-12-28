@@ -258,16 +258,16 @@ export default function PortfolioEditor() {
             <div className="p-4">
               <div className="flex items-start justify-between mb-2">
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white">
+                  <h3 className="font-bold text-gray-900">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-gray-800 font-semibold">
                     {item.category}
                   </p>
                 </div>
               </div>
 
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+              <p className="text-sm text-gray-800 mb-4 line-clamp-2 font-medium">
                 {item.description}
               </p>
 
@@ -295,7 +295,7 @@ export default function PortfolioEditor() {
 
       {items.length === 0 && !editingId && (
         <div className="text-center py-12">
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-900 font-semibold">
             Нет проектов в портфолио. Добавьте первый проект!
           </p>
         </div>

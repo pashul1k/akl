@@ -80,7 +80,7 @@ export default function AdminPage() {
                 href="/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 glass-card rounded-xl font-semibold text-gray-700 hover:shadow-soft transition-all hover:scale-105"
+                className="flex items-center gap-2 px-5 py-2.5 glass-card rounded-xl font-bold text-gray-900 hover:shadow-soft transition-all hover:scale-105"
               >
                 <Home className="w-5 h-5" />
                 <span>На сайт</span>
@@ -112,7 +112,7 @@ export default function AdminPage() {
                 className={`flex items-center gap-2 px-8 py-4 rounded-2xl font-bold transition-all ${
                   activeTab === tab.id
                     ? 'btn-gradient text-white shadow-glow'
-                    : 'glass-card text-gray-700 hover:shadow-soft'
+                    : 'glass-card text-gray-900 hover:shadow-soft'
                 }`}
               >
                 <Icon className="w-5 h-5" />

@@ -70,7 +70,7 @@ export default function Portfolio({ items }: PortfolioProps) {
             </h2>
             <Sparkles className="w-8 h-8 text-secondary-500" />
           </motion.div>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
+          <p className="text-gray-900 text-lg font-semibold">
             Проекты, которыми я горжусь ✨
           </p>
         </motion.div>
@@ -170,14 +170,14 @@ export default function Portfolio({ items }: PortfolioProps) {
                 {selectedItem.title}
               </h3>
 
-              <p className="text-gray-700 dark:text-gray-300 mb-6 text-lg leading-relaxed">
+              <p className="text-gray-900 mb-6 text-lg leading-relaxed font-medium">
                 {selectedItem.description}
               </p>
 
               {selectedItem.clientName && (
                 <div className="mb-4 p-4 glass-card rounded-2xl">
-                  <p className="text-sm font-semibold text-primary-600 mb-1">Клиент:</p>
-                  <p className="text-lg font-bold text-gray-800 dark:text-gray-200">{selectedItem.clientName}</p>
+                  <p className="text-sm font-semibold text-primary-700 mb-1">Клиент:</p>
+                  <p className="text-lg font-bold text-gray-900">{selectedItem.clientName}</p>
                 </div>
               )}
 

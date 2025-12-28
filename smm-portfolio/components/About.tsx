@@ -93,7 +93,7 @@ export default function About() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl text-gray-900 max-w-3xl mx-auto leading-relaxed font-medium"
           >
             Я не просто SMM-специалист. Я изучаю психологию человека,
             его потребности и мотивацию. Это помогает создавать контент,
@@ -121,7 +121,7 @@ export default function About() {
                 {feature.title}
               </h3>
 
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-800 leading-relaxed font-medium">
                 {feature.description}
               </p>
             </motion.div>
@@ -142,7 +142,7 @@ export default function About() {
                 <p className="text-2xl md:text-3xl font-bold gradient-text mb-4 leading-relaxed">
                   &ldquo;Люди покупают не товары, а эмоции и решения своих проблем&rdquo;
                 </p>
-                <p className="text-lg text-gray-700">
+                <p className="text-lg text-gray-900 font-medium">
                   Именно поэтому я сначала изучаю вашу аудиторию, её боли и желания.
                   А потом создаю стратегию, которая говорит с людьми на их языке
                   и приводит к реальным продажам.
@@ -199,7 +199,7 @@ export default function About() {
               <div className="text-5xl md:text-6xl font-bold gradient-text mb-2">
                 {stat.number}{stat.suffix}
               </div>
-              <div className="text-gray-600 font-semibold">
+              <div className="text-gray-900 font-bold">
                 {stat.label}
               </div>
             </motion.div>
