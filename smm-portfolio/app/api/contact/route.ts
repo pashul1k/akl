@@ -3,12 +3,12 @@ import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
   try {
-    const { name, email, phone, message } = await request.json()
+    const { name, email, phone, social, socialType, message } = await request.json()
 
     // Validate required fields
-    if (!name || !email || !message) {
+    if (!name || !email || !message || !social || !socialType) {
       return NextResponse.json(
-        { error: 'Name, email, and message are required' },
+        { error: 'Name, email, message, and social contact are required' },
         { status: 400 }
       )
     }
@@ -19,6 +19,8 @@ export async function POST(request: Request) {
         name,
         email,
         phone: phone || null,
+        social,
+        socialType,
         message,
       },
     })
@@ -26,12 +28,16 @@ export async function POST(request: Request) {
     // Send Telegram notification if bot is configured
     if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
       try {
+        const socialIcon = socialType === 'telegram' ? '📱' : '📸'
+        const socialLabel = socialType === 'telegram' ? 'Telegram' : 'Instagram'
+
         const telegramMessage = `
 🔔 Новое обращение с сайта!
 
 👤 Имя: ${name}
 📧 Email: ${email}
-${phone ? `📱 Телефон: ${phone}\n` : ''}
+${phone ? `📱 Телефон: ${phone}\n` : ''}${socialIcon} ${socialLabel}: ${social}
+
 💬 Сообщение:
 ${message}
 

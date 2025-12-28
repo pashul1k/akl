@@ -70,7 +70,9 @@
     "dependencies": {
         "@aurora-launcher/api": "^0.3.0",
         "@aurora-launcher/core": "^0.18.0",
+        "@types/multer": "^2.0.0",
         "electron-updater": "^6.1.4",
+        "multer": "^2.0.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-router-dom": "^6.3.0",

@@ -3,27 +3,27 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 51, 51, 51;
+  --background-start-rgb: 254, 241, 247;
+  --background-end-rgb: 250, 245, 255;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 245, 245, 245;
+    --background-start-rgb: 30, 20, 30;
+    --background-end-rgb: 20, 15, 25;
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      135deg,
+      rgb(var(--background-start-rgb)) 0%,
+      rgb(var(--background-end-rgb)) 100%
+    );
+  min-height: 100vh;
 }
 
 @layer utilities {
@@ -32,35 +32,197 @@ body {
   }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - более женственный */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: linear-gradient(to bottom, #fef1f7, #faf5ff);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #d946ef, #3b82f6);
-  border-radius: 5px;
+  background: linear-gradient(to bottom, #fda4c7, #d8b4fe);
+  border-radius: 10px;
+  border: 2px solid #fef1f7;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #c026d3, #2563eb);
+  background: linear-gradient(to bottom, #fb6fa1, #c084fc);
 }
 
-/* Glassmorphism */
+/* Glassmorphism с мягкими цветами */
 .glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(253, 164, 199, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(251, 113, 133, 0.1);
 }
 
 .glass-dark {
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(253, 164, 199, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(253, 164, 199, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(168, 85, 247, 0.15);
+}
+
+.glass-hover {
+  transition: all 0.3s ease;
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(253, 164, 199, 0.4);
+  box-shadow: 0 12px 40px 0 rgba(251, 113, 133, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Мягкие тени */
+.shadow-soft {
+  box-shadow: 0 2px 15px -3px rgba(251, 113, 133, 0.3),
+              0 10px 20px -2px rgba(251, 113, 133, 0.1);
+}
+
+.shadow-soft-lg {
+  box-shadow: 0 10px 40px -10px rgba(251, 113, 133, 0.4);
+}
+
+/* Эффект свечения */
+.glow {
+  box-shadow: 0 0 20px rgba(251, 113, 133, 0.5);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+/* Градиентный текст */
+.gradient-text {
+  background: linear-gradient(135deg, #fb6fa1 0%, #d8b4fe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-warm {
+  background: linear-gradient(135deg, #fda4c7 0%, #fdba74 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Кнопка с мягким градиентом */
+.btn-gradient {
+  background: linear-gradient(135deg, #fda4c7 0%, #d8b4fe 100%);
+  box-shadow: 0 4px 15px rgba(251, 113, 133, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  box-shadow: 0 6px 25px rgba(251, 113, 133, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Анимация появления */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Плавающие частицы */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(253, 164, 199, 0.8) 0%, rgba(216, 180, 254, 0.4) 100%);
+  filter: blur(1px);
+  opacity: 0.6;
+}
+
+/* Бабочка анимация */
+@keyframes flutter {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(-5deg) scale(1.05);
+  }
+  75% {
+    transform: rotate(5deg) scale(1.05);
+  }
+}
+
+.flutter {
+  animation: flutter 3s ease-in-out infinite;
+}
+
+/* Мягкий фокус для инпутов */
+.input-soft {
+  transition: all 0.3s ease;
+  border: 2px solid rgba(253, 164, 199, 0.2);
+}
+
+.input-soft:focus {
+  outline: none;
+  border-color: #fda4c7;
+  box-shadow: 0 0 0 3px rgba(253, 164, 199, 0.1);
+}
+
+/* Карточки с hover эффектом */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(251, 113, 133, 0.3);
+}
+
+/* Волновая анимация для фона */
+@keyframes wave-animation {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(-25%) translateY(-25%);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+.wave-bg {
+  animation: wave-animation 20s ease-in-out infinite;
+}
+
+/* Shimmer эффект для загрузки */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(253, 164, 199, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
