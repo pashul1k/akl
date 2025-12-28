@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Save } from 'lucide-react'
+import ImageUploader from './ImageUploader'
 
 export default function ProfileEditor() {
   const [profile, setProfile] = useState({
@@ -78,156 +79,152 @@ export default function ProfileEditor() {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-      <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+    <div className="glass rounded-3xl p-8 shadow-glow">
+      <h2 className="text-3xl font-bold mb-8 gradient-text">
         Редактирование профиля
       </h2>
 
       <div className="grid md:grid-cols-2 gap-6">
         {/* Name */}
         <div>
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-bold text-primary-700 mb-2">
             Имя
           </label>
           <input
             type="text"
             value={profile.name}
             onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
           />
         </div>
 
         {/* Age */}
         <div>
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-bold text-primary-700 mb-2">
             Возраст
           </label>
           <input
             type="number"
             value={profile.age}
             onChange={(e) => setProfile({ ...profile, age: parseInt(e.target.value) })}
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
           />
         </div>
 
         {/* Title */}
         <div className="md:col-span-2">
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-bold text-primary-700 mb-2">
             Должность
           </label>
           <input
             type="text"
             value={profile.title}
             onChange={(e) => setProfile({ ...profile, title: e.target.value })}
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
           />
         </div>
 
         {/* Description */}
         <div className="md:col-span-2">
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-bold text-primary-700 mb-2">
             Описание
           </label>
           <textarea
             value={profile.description}
             onChange={(e) => setProfile({ ...profile, description: e.target.value })}
             rows={4}
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all resize-none text-gray-900 font-medium"
           />
         </div>
 
         {/* Location */}
         <div>
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-bold text-primary-700 mb-2">
             Местоположение
           </label>
           <input
             type="text"
             value={profile.location}
             onChange={(e) => setProfile({ ...profile, location: e.target.value })}
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
           />
         </div>
 
-        {/* Photo URL */}
+        {/* Photo Upload */}
         <div>
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-            URL фото
-          </label>
-          <input
-            type="text"
-            value={profile.photo}
-            onChange={(e) => setProfile({ ...profile, photo: e.target.value })}
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-            placeholder="/default-avatar.jpg"
+          <ImageUploader
+            currentImage={profile.photo}
+            onImageChange={(url) => setProfile({ ...profile, photo: url })}
+            label="Фото профиля"
+            aspectRatio="aspect-square"
           />
         </div>
 
         {/* Social Links */}
         <div className="md:col-span-2">
-          <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
+          <h3 className="text-xl font-bold mb-6 gradient-text">
             Социальные сети
           </h3>
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-bold text-primary-700 mb-2">
             Telegram
           </label>
           <input
             type="text"
             value={profile.telegram}
             onChange={(e) => setProfile({ ...profile, telegram: e.target.value })}
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
             placeholder="@username"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-bold text-primary-700 mb-2">
             Instagram
           </label>
           <input
             type="text"
             value={profile.instagram}
             onChange={(e) => setProfile({ ...profile, instagram: e.target.value })}
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
             placeholder="@username"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-bold text-primary-700 mb-2">
             Threads
           </label>
           <input
             type="text"
             value={profile.threads}
             onChange={(e) => setProfile({ ...profile, threads: e.target.value })}
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
             placeholder="@username"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-bold text-primary-700 mb-2">
             Email (необязательно)
           </label>
           <input
             type="email"
             value={profile.email}
             onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-            className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
           />
         </div>
       </div>
 
       {/* Save button */}
-      <div className="mt-8 flex items-center gap-4">
+      <div className="mt-10 flex items-center gap-4">
         <button
           onClick={handleSave}
           disabled={saving}
-          className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center gap-3 px-8 py-4 btn-gradient text-white rounded-2xl font-bold hover:shadow-glow hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-lg"
         >
           <Save className="w-5 h-5" />
           {saving ? 'Сохранение...' : 'Сохранить изменения'}
@@ -237,10 +234,10 @@ export default function ProfileEditor() {
           <motion.p
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            className={`font-semibold ${
+            className={`font-bold text-lg ${
               message.includes('успешно')
-                ? 'text-green-600 dark:text-green-400'
-                : 'text-red-600 dark:text-red-400'
+                ? 'text-green-600'
+                : 'text-red-600'
             }`}
           >
             {message}

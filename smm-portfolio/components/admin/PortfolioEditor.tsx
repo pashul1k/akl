@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Plus, Edit2, Trash2, Save, X } from 'lucide-react'
 import Image from 'next/image'
+import ImageUploader from './ImageUploader'
 
 interface PortfolioItem {
   id: string
@@ -112,15 +113,15 @@ export default function PortfolioEditor() {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+    <div className="glass rounded-3xl p-8 shadow-glow">
+      <div className="flex items-center justify-between mb-8">
+        <h2 className="text-3xl font-bold gradient-text">
           Редактор портфолио
         </h2>
 
         <button
           onClick={handleAdd}
-          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
+          className="flex items-center gap-2 px-6 py-3 btn-gradient text-white rounded-2xl font-bold hover:shadow-glow hover:scale-105 transition-all"
         >
           <Plus className="w-5 h-5" />
           Добавить проект
@@ -132,10 +133,10 @@ export default function PortfolioEditor() {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 mb-6"
+          className="glass-card rounded-2xl p-8 mb-8 border-2 border-primary-200"
         >
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-2xl font-bold gradient-text">
               {editingId === 'new' ? 'Новый проект' : 'Редактирование проекта'}
             </h3>
             <button
@@ -143,33 +144,33 @@ export default function PortfolioEditor() {
                 setEditingId(null)
                 setFormData({})
               }}
-              className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+              className="text-primary-500 hover:text-primary-700 hover:scale-110 transition-all"
             >
-              <X className="w-6 h-6" />
+              <X className="w-7 h-7" />
             </button>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-bold text-primary-700 mb-2">
                 Название
               </label>
               <input
                 type="text"
                 value={formData.title || ''}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                className="w-full px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500"
+                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-bold text-primary-700 mb-2">
                 Категория
               </label>
               <select
                 value={formData.category || 'Instagram'}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500"
+                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
               >
                 <option value="Instagram">Instagram</option>
                 <option value="Telegram">Telegram</option>
@@ -179,51 +180,47 @@ export default function PortfolioEditor() {
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-bold text-primary-700 mb-2">
                 Описание
               </label>
               <textarea
                 value={formData.description || ''}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 rows={3}
-                className="w-full px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500 resize-none"
+                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all resize-none text-gray-900 font-medium"
+              />
+            </div>
+
+            <div className="md:col-span-2">
+              <ImageUploader
+                currentImage={formData.image || ''}
+                onImageChange={(url) => setFormData({ ...formData, image: url })}
+                label="Изображение проекта"
+                aspectRatio="aspect-video"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                URL изображения
-              </label>
-              <input
-                type="text"
-                value={formData.image || ''}
-                onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                className="w-full px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500"
-                placeholder="/portfolio/example.jpg"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-bold text-primary-700 mb-2">
                 Клиент
               </label>
               <input
                 type="text"
                 value={formData.clientName || ''}
                 onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
-                className="w-full px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500"
+                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
               />
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-bold text-primary-700 mb-2">
                 Результаты
               </label>
               <input
                 type="text"
                 value={formData.result || ''}
                 onChange={(e) => setFormData({ ...formData, result: e.target.value })}
-                className="w-full px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500"
+                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
                 placeholder="+300% охватов, +150% конверсия"
               />
             </div>
@@ -231,7 +228,7 @@ export default function PortfolioEditor() {
 
           <button
             onClick={handleSave}
-            className="mt-4 flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
+            className="mt-6 flex items-center gap-2 px-8 py-4 btn-gradient text-white rounded-2xl font-bold hover:shadow-glow hover:scale-105 transition-all text-lg"
           >
             <Save className="w-5 h-5" />
             Сохранить

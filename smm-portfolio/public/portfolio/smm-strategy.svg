@@ -1,0 +1,35 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="smm-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef1f7;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#faf5ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fff7ed;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#smm-grad)"/>
+
+  <!-- Brain illustration (psychology) -->
+  <circle cx="400" cy="260" r="120" fill="#fda4c7" opacity="0.3"/>
+  <path d="M 350 260 Q 350 200 400 180 Q 450 200 450 260 Q 450 300 430 320 Q 420 310 410 320 Q 400 310 390 320 Q 380 310 370 320 Q 350 300 350 260 Z" fill="#fb6fa1" opacity="0.6"/>
+
+  <!-- Connections (neural network style) -->
+  <line x1="300" y1="260" x2="250" y2="220" stroke="#d8b4fe" stroke-width="3" opacity="0.6"/>
+  <line x1="300" y1="280" x2="250" y2="320" stroke="#d8b4fe" stroke-width="3" opacity="0.6"/>
+  <line x1="500" y1="260" x2="550" y2="220" stroke="#a855f7" stroke-width="3" opacity="0.6"/>
+  <line x1="500" y1="280" x2="550" y2="320" stroke="#a855f7" stroke-width="3" opacity="0.6"/>
+
+  <!-- Nodes -->
+  <circle cx="250" cy="220" r="15" fill="#fda4c7"/>
+  <circle cx="250" cy="320" r="15" fill="#d8b4fe"/>
+  <circle cx="550" cy="220" r="15" fill="#a855f7"/>
+  <circle cx="550" cy="320" r="15" fill="#fb923c"/>
+
+  <!-- Heart in center -->
+  <path d="M 400 270 L 415 255 Q 422 248 430 255 Q 438 248 445 255 L 430 285 Q 422 293 415 285 Z" fill="#e11d68"/>
+
+  <!-- Text -->
+  <text x="400" y="460" font-family="Arial, sans-serif" font-size="46" fill="#fb6fa1" text-anchor="middle" font-weight="bold">SMM Стратегия</text>
+  <text x="400" y="500" font-family="Arial, sans-serif" font-size="26" fill="#a855f7" text-anchor="middle" font-weight="600">На основе психологии</text>
+</svg>

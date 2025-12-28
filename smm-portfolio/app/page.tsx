@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero'
+import About from '@/components/About'
 import Portfolio from '@/components/Portfolio'
 import ContactForm from '@/components/ContactForm'
 import { prisma } from '@/lib/prisma'
@@ -40,6 +41,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen">
       <Hero profile={profile} />
+      <About />
       <Portfolio items={portfolioItems} />
       <ContactForm
         socialLinks={{

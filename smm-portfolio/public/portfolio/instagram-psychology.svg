@@ -1,0 +1,33 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="insta-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fda4c7;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#d8b4fe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fb923c;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#fda4c7;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#insta-grad)"/>
+
+  <!-- Glowing circles -->
+  <circle cx="200" cy="150" r="100" fill="url(#glow)" opacity="0.4"/>
+  <circle cx="600" cy="450" r="120" fill="url(#glow)" opacity="0.3"/>
+
+  <!-- Instagram camera icon styled -->
+  <rect x="300" y="180" width="200" height="200" rx="60" fill="white" opacity="0.9"/>
+  <circle cx="400" cy="280" r="60" fill="none" stroke="#fb6fa1" stroke-width="8"/>
+  <circle cx="460" cy="220" r="15" fill="#d8b4fe"/>
+
+  <!-- Hearts -->
+  <path d="M 100 500 L 120 480 Q 130 470 140 480 Q 150 470 160 480 L 140 510 Q 130 520 120 510 Z" fill="white" opacity="0.7"/>
+  <path d="M 680 80 L 700 60 Q 710 50 720 60 Q 730 50 740 60 L 720 90 Q 710 100 700 90 Z" fill="white" opacity="0.6"/>
+
+  <!-- Text -->
+  <text x="400" y="450" font-family="Arial, sans-serif" font-size="42" fill="white" text-anchor="middle" font-weight="bold">Instagram</text>
+  <text x="400" y="490" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle" opacity="0.9">Психология продаж</text>
+</svg>

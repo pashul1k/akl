@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { LogOut, User, Briefcase, Mail, Home } from 'lucide-react'
+import { LogOut, User, Briefcase, Mail, Home, Sparkles } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 import ProfileEditor from '@/components/admin/ProfileEditor'
 import PortfolioEditor from '@/components/admin/PortfolioEditor'
@@ -25,10 +25,10 @@ export default function AdminPage() {
 
   if (status === 'loading') {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-soft">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-primary-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">Загрузка...</p>
+          <div className="w-16 h-16 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="gradient-text font-semibold text-lg">Загрузка...</p>
         </div>
       </div>
     )
@@ -45,21 +45,42 @@ export default function AdminPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      {/* Header */}
-      <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-              Админ-панель
-            </h1>
+    <div className="min-h-screen bg-gradient-soft relative overflow-hidden">
+      {/* Decorative background */}
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.2, 0.3, 0.2]
+        }}
+        transition={{ duration: 10, repeat: Infinity }}
+        className="absolute top-0 right-0 w-96 h-96 bg-secondary-200 rounded-full blur-3xl"
+      />
+      <motion.div
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.1, 0.2, 0.1]
+        }}
+        transition={{ duration: 12, repeat: Infinity, delay: 2 }}
+        className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary-200 rounded-full blur-3xl"
+      />
 
-            <div className="flex items-center gap-4">
+      {/* Header */}
+      <header className="glass-card border-b border-primary-200/30 shadow-soft relative z-10">
+        <div className="container mx-auto px-6 py-5">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Sparkles className="w-8 h-8 text-primary-500 animate-pulse-soft" />
+              <h1 className="text-3xl font-bold gradient-text">
+                Админ-панель
+              </h1>
+            </div>
+
+            <div className="flex items-center gap-3">
               <a
                 href="/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-5 py-2.5 glass-card rounded-xl font-semibold text-gray-700 hover:shadow-soft transition-all hover:scale-105"
               >
                 <Home className="w-5 h-5" />
                 <span>На сайт</span>
@@ -67,7 +88,7 @@ export default function AdminPage() {
 
               <button
                 onClick={() => signOut({ callbackUrl: '/' })}
-                className="flex items-center gap-2 px-4 py-2 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors"
+                className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-red-400 to-pink-400 text-white rounded-xl font-semibold hover:shadow-soft transition-all hover:scale-105"
               >
                 <LogOut className="w-5 h-5" />
                 <span>Выйти</span>
@@ -78,23 +99,25 @@ export default function AdminPage() {
       </header>
 
       {/* Tabs */}
-      <div className="container mx-auto px-6 py-6">
-        <div className="flex gap-2 mb-6">
+      <div className="container mx-auto px-6 py-8 relative z-10">
+        <div className="flex gap-3 mb-8 flex-wrap">
           {tabs.map((tab) => {
             const Icon = tab.icon
             return (
-              <button
+              <motion.button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className={`flex items-center gap-2 px-8 py-4 rounded-2xl font-bold transition-all ${
                   activeTab === tab.id
-                    ? 'bg-gradient-to-r from-primary-600 to-secondary-600 text-white shadow-lg'
-                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    ? 'btn-gradient text-white shadow-glow'
+                    : 'glass-card text-gray-700 hover:shadow-soft'
                 }`}
               >
                 <Icon className="w-5 h-5" />
                 {tab.label}
-              </button>
+              </motion.button>
             )
           })}
         </div>
@@ -102,9 +125,9 @@ export default function AdminPage() {
         {/* Content */}
         <motion.div
           key={activeTab}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.4, type: "spring" }}
         >
           {activeTab === 'profile' && <ProfileEditor />}
           {activeTab === 'portfolio' && <PortfolioEditor />}
