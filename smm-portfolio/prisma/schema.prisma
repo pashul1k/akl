@@ -1,0 +1,65 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Profile {
+  id          String   @id @default(cuid())
+  name        String   @default("Марго")
+  age         Int      @default(24)
+  title       String   @default("SMM-маркетолог")
+  description String   @default("Помогаю бизнесу расти через социальные сети в направлении психологии")
+  photo       String   @default("/default-avatar.jpg")
+
+  // Социальные сети
+  telegram    String?
+  instagram   String?
+  threads     String?
+
+  // Дополнительная информация
+  location    String   @default("Казахстан")
+  email       String?
+  phone       String?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Portfolio {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  image       String
+  category    String   // например: "Instagram", "Telegram", "Threads"
+  clientName  String?
+  result      String?  // результаты работы
+  order       Int      @default(0) // для сортировки
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ContactForm {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  message   String
+  isRead    Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+}

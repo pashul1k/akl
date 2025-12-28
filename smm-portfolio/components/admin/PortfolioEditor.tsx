@@ -1,0 +1,308 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { Plus, Edit2, Trash2, Save, X } from 'lucide-react'
+import Image from 'next/image'
+
+interface PortfolioItem {
+  id: string
+  title: string
+  description: string
+  image: string
+  category: string
+  clientName?: string | null
+  result?: string | null
+  order: number
+}
+
+export default function PortfolioEditor() {
+  const [items, setItems] = useState<PortfolioItem[]>([])
+  const [loading, setLoading] = useState(true)
+  const [editingId, setEditingId] = useState<string | null>(null)
+  const [formData, setFormData] = useState<Partial<PortfolioItem>>({})
+
+  useEffect(() => {
+    fetchItems()
+  }, [])
+
+  const fetchItems = async () => {
+    try {
+      const res = await fetch('/api/portfolio')
+      const data = await res.json()
+      setItems(data)
+    } catch (error) {
+      console.error('Error fetching portfolio:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleAdd = () => {
+    setEditingId('new')
+    setFormData({
+      title: '',
+      description: '',
+      image: '',
+      category: 'Instagram',
+      clientName: '',
+      result: '',
+      order: items.length,
+    })
+  }
+
+  const handleEdit = (item: PortfolioItem) => {
+    setEditingId(item.id)
+    setFormData(item)
+  }
+
+  const handleSave = async () => {
+    try {
+      if (editingId === 'new') {
+        const res = await fetch('/api/portfolio', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        })
+
+        if (res.ok) {
+          await fetchItems()
+        }
+      } else {
+        const res = await fetch(`/api/portfolio/${editingId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        })
+
+        if (res.ok) {
+          await fetchItems()
+        }
+      }
+
+      setEditingId(null)
+      setFormData({})
+    } catch (error) {
+      console.error('Error saving portfolio item:', error)
+    }
+  }
+
+  const handleDelete = async (id: string) => {
+    if (!confirm('Удалить этот элемент портфолио?')) return
+
+    try {
+      const res = await fetch(`/api/portfolio/${id}`, {
+        method: 'DELETE',
+      })
+
+      if (res.ok) {
+        await fetchItems()
+      }
+    } catch (error) {
+      console.error('Error deleting portfolio item:', error)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center p-12">
+        <div className="w-12 h-12 border-4 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+          Редактор портфолио
+        </h2>
+
+        <button
+          onClick={handleAdd}
+          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
+        >
+          <Plus className="w-5 h-5" />
+          Добавить проект
+        </button>
+      </div>
+
+      {/* Edit form */}
+      {editingId && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 mb-6"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              {editingId === 'new' ? 'Новый проект' : 'Редактирование проекта'}
+            </h3>
+            <button
+              onClick={() => {
+                setEditingId(null)
+                setFormData({})
+              }}
+              className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                Название
+              </label>
+              <input
+                type="text"
+                value={formData.title || ''}
+                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                className="w-full px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                Категория
+              </label>
+              <select
+                value={formData.category || 'Instagram'}
+                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                className="w-full px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500"
+              >
+                <option value="Instagram">Instagram</option>
+                <option value="Telegram">Telegram</option>
+                <option value="Threads">Threads</option>
+                <option value="SMM">SMM</option>
+              </select>
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                Описание
+              </label>
+              <textarea
+                value={formData.description || ''}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                rows={3}
+                className="w-full px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500 resize-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                URL изображения
+              </label>
+              <input
+                type="text"
+                value={formData.image || ''}
+                onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                className="w-full px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500"
+                placeholder="/portfolio/example.jpg"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                Клиент
+              </label>
+              <input
+                type="text"
+                value={formData.clientName || ''}
+                onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
+                className="w-full px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500"
+              />
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                Результаты
+              </label>
+              <input
+                type="text"
+                value={formData.result || ''}
+                onChange={(e) => setFormData({ ...formData, result: e.target.value })}
+                className="w-full px-4 py-2 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500"
+                placeholder="+300% охватов, +150% конверсия"
+              />
+            </div>
+          </div>
+
+          <button
+            onClick={handleSave}
+            className="mt-4 flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
+          >
+            <Save className="w-5 h-5" />
+            Сохранить
+          </button>
+        </motion.div>
+      )}
+
+      {/* Items list */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {items.map((item) => (
+          <motion.div
+            key={item.id}
+            layout
+            className="bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden"
+          >
+            <div className="relative aspect-video bg-gray-200 dark:bg-gray-600">
+              {item.image && (
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                />
+              )}
+            </div>
+
+            <div className="p-4">
+              <div className="flex items-start justify-between mb-2">
+                <div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {item.category}
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+                {item.description}
+              </p>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={() => handleEdit(item)}
+                  className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+                >
+                  <Edit2 className="w-4 h-4" />
+                  Изменить
+                </button>
+
+                <button
+                  onClick={() => handleDelete(item.id)}
+                  className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors"
+                >
+                  <Trash2 className="w-4 h-4" />
+                  Удалить
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {items.length === 0 && !editingId && (
+        <div className="text-center py-12">
+          <p className="text-gray-600 dark:text-gray-400">
+            Нет проектов в портфолио. Добавьте первый проект!
+          </p>
+        </div>
+      )}
+    </div>
+  )
+}
