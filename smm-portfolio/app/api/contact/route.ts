@@ -53,6 +53,30 @@ ${message}
               chat_id: process.env.TELEGRAM_CHAT_ID,
               text: telegramMessage,
               parse_mode: 'HTML',
+              reply_markup: {
+                inline_keyboard: [
+                  [
+                    {
+                      text: '⏳ На рассмотрении',
+                      callback_data: `status_pending_${contact.id}`
+                    },
+                    {
+                      text: '✅ Связалась',
+                      callback_data: `status_contacted_${contact.id}`
+                    }
+                  ],
+                  [
+                    {
+                      text: '❌ Отказ',
+                      callback_data: `status_rejected_${contact.id}`
+                    },
+                    {
+                      text: '🚀 Начало работы',
+                      callback_data: `status_working_${contact.id}`
+                    }
+                  ]
+                ]
+              }
             }),
           }
         )

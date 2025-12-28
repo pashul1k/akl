@@ -62,6 +62,7 @@ model ContactForm {
   socialType String   // 'telegram' или 'instagram'
   message    String
   isRead     Boolean  @default(false)
+  status     String   @default("pending") // pending, contacted, rejected, working
 
   createdAt  DateTime @default(now())
 }

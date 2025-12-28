@@ -206,21 +206,22 @@ export default function AboutMe({ data, certificates }: AboutMeProps) {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
-                className="relative max-w-4xl w-full bg-white rounded-3xl p-6 shadow-glow-purple"
+                className="relative max-w-4xl w-full max-h-[90vh] bg-white rounded-3xl p-6 shadow-glow-purple overflow-y-auto"
               >
                 <button
                   onClick={() => setSelectedCertificate(null)}
-                  className="absolute top-4 right-4 w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-all hover:scale-110 z-10"
+                  className="sticky top-0 right-0 ml-auto mb-4 w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-all hover:scale-110 z-10"
                 >
                   <X className="w-6 h-6" />
                 </button>
 
-                <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-primary-50">
+                <div className="relative w-full max-h-[60vh] rounded-2xl overflow-hidden bg-primary-50 flex items-center justify-center">
                   <Image
                     src={selectedCertificate.image}
                     alt={selectedCertificate.title}
-                    fill
-                    className="object-contain"
+                    width={800}
+                    height={1067}
+                    className="object-contain w-full h-auto max-h-[60vh]"
                   />
                 </div>
 

@@ -227,7 +227,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/80 dark:bg-soft-800/50 rounded-2xl text-soft-900 dark:text-white placeholder-gray-400"
+                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/95 rounded-2xl text-soft-900 placeholder-soft-400"
                     placeholder="Как вас зовут?"
                   />
                 </div>
@@ -245,7 +245,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/80 dark:bg-soft-800/50 rounded-2xl text-soft-900 dark:text-white placeholder-gray-400"
+                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/95 rounded-2xl text-soft-900 placeholder-soft-400"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -262,7 +262,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/80 dark:bg-soft-800/50 rounded-2xl text-soft-900 dark:text-white placeholder-gray-400"
+                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/95 rounded-2xl text-soft-900 placeholder-soft-400"
                     placeholder="+7 (XXX) XXX-XX-XX"
                   />
                 </div>
@@ -313,7 +313,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                     required
                     value={formData.social}
                     onChange={(e) => setFormData({ ...formData, social: e.target.value })}
-                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/80 dark:bg-soft-800/50 rounded-2xl text-soft-900 dark:text-white placeholder-gray-400"
+                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/95 rounded-2xl text-soft-900 placeholder-soft-400"
                     placeholder={formData.socialType === 'telegram' ? '@username или ссылка' : '@username или ссылка'}
                   />
                 </div>
@@ -332,7 +332,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={5}
-                  className="w-full px-4 py-4 input-soft bg-white/80 dark:bg-soft-800/50 rounded-2xl text-soft-900 dark:text-white placeholder-gray-400 resize-none"
+                  className="w-full px-4 py-4 input-soft bg-white/95 rounded-2xl text-soft-900 placeholder-soft-400 resize-none"
                   placeholder="Опишите ваши цели, задачи и ожидания от сотрудничества..."
                 />
               </div>
