@@ -147,7 +147,7 @@ export default function CertificateEditor() {
                 type="text"
                 value={formData.title || ''}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
                 placeholder="Например: Психолог дошкольных учреждений"
               />
             </div>
@@ -161,7 +161,7 @@ export default function CertificateEditor() {
                 type="text"
                 value={formData.organization || ''}
                 onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
                 placeholder="Например: Expert X"
               />
             </div>
@@ -175,7 +175,7 @@ export default function CertificateEditor() {
                 type="text"
                 value={formData.date || ''}
                 onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
                 placeholder="Например: 23.06.2024"
               />
             </div>
@@ -189,7 +189,7 @@ export default function CertificateEditor() {
                 type="number"
                 value={formData.order ?? 0}
                 onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) })}
-                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
               />
             </div>
 
@@ -219,7 +219,7 @@ export default function CertificateEditor() {
                 setEditingId(null)
                 setFormData({})
               }}
-              className="flex items-center gap-2 px-6 py-3 bg-gray-400 hover:bg-gray-500 text-white rounded-xl font-bold hover:scale-105 transition-all"
+              className="flex items-center gap-2 px-6 py-3 bg-soft-300 hover:bg-soft-500 text-white rounded-xl font-bold hover:scale-105 transition-all"
             >
               <X className="w-5 h-5" />
               Отмена
@@ -248,20 +248,20 @@ export default function CertificateEditor() {
                   className="object-cover"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                  <Award className="w-12 h-12 text-gray-400" />
+                <div className="w-full h-full flex items-center justify-center bg-primary-100">
+                  <Award className="w-12 h-12 text-soft-400" />
                 </div>
               )}
             </div>
 
             {/* Info */}
-            <h4 className="text-sm font-bold text-gray-900 mb-1 line-clamp-2">
+            <h4 className="text-sm font-bold text-soft-900 mb-1 line-clamp-2">
               {cert.title}
             </h4>
-            <p className="text-xs text-gray-700 font-medium mb-1">
+            <p className="text-xs text-soft-700 font-medium mb-1">
               {cert.organization}
             </p>
-            <p className="text-xs text-gray-600 mb-3">
+            <p className="text-xs text-soft-600 mb-3">
               {cert.date}
             </p>
 
@@ -288,10 +288,10 @@ export default function CertificateEditor() {
       {certificates.length === 0 && (
         <div className="text-center py-12">
           <Award className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-          <p className="text-gray-500 text-lg font-medium">
+          <p className="text-soft-500 text-lg font-medium">
             Сертификаты не добавлены
           </p>
-          <p className="text-gray-400 mt-2">
+          <p className="text-soft-400 mt-2">
             Нажмите "Добавить сертификат" чтобы начать
           </p>
         </div>

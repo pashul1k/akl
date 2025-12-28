@@ -100,7 +100,7 @@ export default function AboutMe({ data, certificates }: AboutMeProps) {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="text-xl text-gray-900 max-w-3xl mx-auto font-medium"
+            className="text-xl text-soft-900 max-w-3xl mx-auto font-medium"
           >
             Мой путь в маркетинге начался с психологии и работы с людьми
           </motion.p>
@@ -128,7 +128,7 @@ export default function AboutMe({ data, certificates }: AboutMeProps) {
                   } flex items-center justify-center shadow-soft group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
                     <Icon className="w-6 h-6 text-white" />
                   </div>
-                  <p className="text-gray-900 font-medium leading-relaxed flex-1">
+                  <p className="text-soft-900 font-medium leading-relaxed flex-1">
                     {item}
                   </p>
                 </div>
@@ -151,7 +151,7 @@ export default function AboutMe({ data, certificates }: AboutMeProps) {
                 Мои сертификаты
                 <Award className="w-8 h-8" />
               </h3>
-              <p className="text-gray-900 font-medium text-lg">
+              <p className="text-soft-900 font-medium text-lg">
                 Подтверждение квалификации и непрерывного обучения
               </p>
             </div>
@@ -176,13 +176,13 @@ export default function AboutMe({ data, certificates }: AboutMeProps) {
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
-                  <h4 className="text-sm font-bold text-gray-900 mb-1 line-clamp-2">
+                  <h4 className="text-sm font-bold text-soft-900 mb-1 line-clamp-2">
                     {cert.title}
                   </h4>
-                  <p className="text-xs text-gray-700 font-medium mb-1">
+                  <p className="text-xs text-soft-700 font-medium mb-1">
                     {cert.organization}
                   </p>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-soft-600">
                     {cert.date}
                   </p>
                 </motion.div>
@@ -215,7 +215,7 @@ export default function AboutMe({ data, certificates }: AboutMeProps) {
                   <X className="w-6 h-6" />
                 </button>
 
-                <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100">
+                <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-primary-50">
                   <Image
                     src={selectedCertificate.image}
                     alt={selectedCertificate.title}
@@ -228,10 +228,10 @@ export default function AboutMe({ data, certificates }: AboutMeProps) {
                   <h3 className="text-2xl font-bold gradient-text mb-2">
                     {selectedCertificate.title}
                   </h3>
-                  <p className="text-lg text-gray-900 font-semibold mb-1">
+                  <p className="text-lg text-soft-900 font-semibold mb-1">
                     {selectedCertificate.organization}
                   </p>
-                  <p className="text-gray-700 font-medium">
+                  <p className="text-soft-700 font-medium">
                     {selectedCertificate.date}
                   </p>
                 </div>
@@ -261,7 +261,7 @@ export default function AboutMe({ data, certificates }: AboutMeProps) {
                 <h3 className="text-2xl md:text-3xl font-bold gradient-text mb-3">
                   Птица Феникс - символ моей жизни
                 </h3>
-                <p className="text-lg text-gray-900 font-medium leading-relaxed">
+                <p className="text-lg text-soft-900 font-medium leading-relaxed">
                   Возрождение из пепла, трансформация через сложности, постоянный рост.
                   Каждый вызов делает меня сильнее, каждый опыт - мудрее.
                   Именно это я приношу в ваш бизнес - способность к трансформации и возрождению.

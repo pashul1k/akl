@@ -95,7 +95,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text">
             Свяжитесь со мной
           </h2>
-          <p className="text-gray-900 text-lg max-w-2xl mx-auto font-medium">
+          <p className="text-soft-900 text-lg max-w-2xl mx-auto font-medium">
             Готова обсудить ваш проект и помочь вашему бизнесу расти через социальные сети
           </p>
         </motion.div>
@@ -126,8 +126,8 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                       <Send className="w-7 h-7 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-800 font-bold">Telegram</p>
-                      <p className="font-bold text-gray-900 text-lg group-hover:gradient-text transition-all">
+                      <p className="text-sm text-soft-800 font-bold">Telegram</p>
+                      <p className="font-bold text-soft-900 text-lg group-hover:gradient-text transition-all">
                         {socialLinks.telegram}
                       </p>
                     </div>
@@ -146,8 +146,8 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                       <InstagramIcon className="w-7 h-7 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-800 font-bold">Instagram</p>
-                      <p className="font-bold text-gray-900 text-lg group-hover:gradient-text transition-all">
+                      <p className="text-sm text-soft-800 font-bold">Instagram</p>
+                      <p className="font-bold text-soft-900 text-lg group-hover:gradient-text transition-all">
                         {socialLinks.instagram}
                       </p>
                     </div>
@@ -166,8 +166,8 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                       <MessageSquare className="w-7 h-7 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-800 font-bold">Threads</p>
-                      <p className="font-bold text-gray-900 text-lg group-hover:gradient-text transition-all">
+                      <p className="text-sm text-soft-800 font-bold">Threads</p>
+                      <p className="font-bold text-soft-900 text-lg group-hover:gradient-text transition-all">
                         {socialLinks.threads}
                       </p>
                     </div>
@@ -201,7 +201,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                     className="flex items-center gap-3"
                   >
                     <div className="w-2 h-2 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500" />
-                    <span className="text-gray-900 font-medium">{item}</span>
+                    <span className="text-soft-900 font-medium">{item}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -217,7 +217,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
             <form onSubmit={handleSubmit} className="glass rounded-3xl p-8 shadow-soft-lg space-y-6">
               {/* Имя */}
               <div>
-                <label className="block text-sm font-bold text-gray-900 mb-2">
+                <label className="block text-sm font-bold text-soft-900 mb-2">
                   Ваше имя *
                 </label>
                 <div className="relative">
@@ -227,7 +227,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/80 dark:bg-gray-800/50 rounded-2xl text-gray-900 dark:text-white placeholder-gray-400"
+                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/80 dark:bg-soft-800/50 rounded-2xl text-soft-900 dark:text-white placeholder-gray-400"
                     placeholder="Как вас зовут?"
                   />
                 </div>
@@ -235,7 +235,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
 
               {/* Email */}
               <div>
-                <label className="block text-sm font-bold text-gray-900 mb-2">
+                <label className="block text-sm font-bold text-soft-900 mb-2">
                   Email *
                 </label>
                 <div className="relative">
@@ -245,7 +245,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/80 dark:bg-gray-800/50 rounded-2xl text-gray-900 dark:text-white placeholder-gray-400"
+                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/80 dark:bg-soft-800/50 rounded-2xl text-soft-900 dark:text-white placeholder-gray-400"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -253,7 +253,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
 
               {/* Телефон (необязательно) */}
               <div>
-                <label className="block text-sm font-bold text-gray-900 mb-2">
+                <label className="block text-sm font-bold text-soft-900 mb-2">
                   Телефон
                 </label>
                 <div className="relative">
@@ -262,7 +262,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/80 dark:bg-gray-800/50 rounded-2xl text-gray-900 dark:text-white placeholder-gray-400"
+                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/80 dark:bg-soft-800/50 rounded-2xl text-soft-900 dark:text-white placeholder-gray-400"
                     placeholder="+7 (XXX) XXX-XX-XX"
                   />
                 </div>
@@ -270,7 +270,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
 
               {/* Социальная сеть (ОБЯЗАТЕЛЬНО) */}
               <div>
-                <label className="block text-sm font-bold text-gray-900 mb-2">
+                <label className="block text-sm font-bold text-soft-900 mb-2">
                   Ваш Telegram или Instagram * <span className="text-primary-600 font-bold">(обязательно)</span>
                 </label>
 
@@ -282,7 +282,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                     className={`flex-1 py-3 px-4 rounded-xl font-bold transition-all ${
                       formData.socialType === 'telegram'
                         ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-soft'
-                        : 'glass-card text-gray-900'
+                        : 'glass-card text-soft-900'
                     }`}
                   >
                     <Send className="w-5 h-5 inline mr-2" />
@@ -294,7 +294,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                     className={`flex-1 py-3 px-4 rounded-xl font-bold transition-all ${
                       formData.socialType === 'instagram'
                         ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-soft'
-                        : 'glass-card text-gray-900'
+                        : 'glass-card text-soft-900'
                     }`}
                   >
                     <InstagramIcon className="w-5 h-5 inline mr-2" />
@@ -313,18 +313,18 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                     required
                     value={formData.social}
                     onChange={(e) => setFormData({ ...formData, social: e.target.value })}
-                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/80 dark:bg-gray-800/50 rounded-2xl text-gray-900 dark:text-white placeholder-gray-400"
+                    className="w-full pl-12 pr-4 py-4 input-soft bg-white/80 dark:bg-soft-800/50 rounded-2xl text-soft-900 dark:text-white placeholder-gray-400"
                     placeholder={formData.socialType === 'telegram' ? '@username или ссылка' : '@username или ссылка'}
                   />
                 </div>
-                <p className="mt-2 text-xs text-gray-800 font-medium">
+                <p className="mt-2 text-xs text-soft-800 font-medium">
                   Нужен для быстрой связи и согласования деталей проекта
                 </p>
               </div>
 
               {/* Сообщение */}
               <div>
-                <label className="block text-sm font-bold text-gray-900 mb-2">
+                <label className="block text-sm font-bold text-soft-900 mb-2">
                   Расскажите о вашем проекте *
                 </label>
                 <textarea
@@ -332,7 +332,7 @@ export default function ContactForm({ socialLinks }: ContactFormProps) {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={5}
-                  className="w-full px-4 py-4 input-soft bg-white/80 dark:bg-gray-800/50 rounded-2xl text-gray-900 dark:text-white placeholder-gray-400 resize-none"
+                  className="w-full px-4 py-4 input-soft bg-white/80 dark:bg-soft-800/50 rounded-2xl text-soft-900 dark:text-white placeholder-gray-400 resize-none"
                   placeholder="Опишите ваши цели, задачи и ожидания от сотрудничества..."
                 />
               </div>

@@ -159,7 +159,7 @@ export default function PortfolioEditor() {
                 type="text"
                 value={formData.title || ''}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
               />
             </div>
 
@@ -170,7 +170,7 @@ export default function PortfolioEditor() {
               <select
                 value={formData.category || 'Instagram'}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
               >
                 <option value="Instagram">Instagram</option>
                 <option value="Telegram">Telegram</option>
@@ -187,7 +187,7 @@ export default function PortfolioEditor() {
                 value={formData.description || ''}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 rows={3}
-                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all resize-none text-gray-900 font-medium"
+                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all resize-none text-soft-900 font-medium"
               />
             </div>
 
@@ -208,7 +208,7 @@ export default function PortfolioEditor() {
                 type="text"
                 value={formData.clientName || ''}
                 onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
-                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
               />
             </div>
 
@@ -220,7 +220,7 @@ export default function PortfolioEditor() {
                 type="text"
                 value={formData.result || ''}
                 onChange={(e) => setFormData({ ...formData, result: e.target.value })}
-                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
                 placeholder="+300% охватов, +150% конверсия"
               />
             </div>
@@ -242,9 +242,9 @@ export default function PortfolioEditor() {
           <motion.div
             key={item.id}
             layout
-            className="bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden"
+            className="bg-gray-50 dark:bg-soft-700 rounded-xl overflow-hidden"
           >
-            <div className="relative aspect-video bg-gray-200 dark:bg-gray-600">
+            <div className="relative aspect-video bg-primary-100 dark:bg-soft-600">
               {item.image && (
                 <Image
                   src={item.image}
@@ -258,16 +258,16 @@ export default function PortfolioEditor() {
             <div className="p-4">
               <div className="flex items-start justify-between mb-2">
                 <div>
-                  <h3 className="font-bold text-gray-900">
+                  <h3 className="font-bold text-soft-900">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-gray-800 font-semibold">
+                  <p className="text-sm text-soft-800 font-semibold">
                     {item.category}
                   </p>
                 </div>
               </div>
 
-              <p className="text-sm text-gray-800 mb-4 line-clamp-2 font-medium">
+              <p className="text-sm text-soft-800 mb-4 line-clamp-2 font-medium">
                 {item.description}
               </p>
 
@@ -295,7 +295,7 @@ export default function PortfolioEditor() {
 
       {items.length === 0 && !editingId && (
         <div className="text-center py-12">
-          <p className="text-gray-900 font-semibold">
+          <p className="text-soft-900 font-semibold">
             Нет проектов в портфолио. Добавьте первый проект!
           </p>
         </div>

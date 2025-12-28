@@ -139,7 +139,7 @@ export default function AboutSectionEditor() {
               type="text"
               value={aboutMeSection.title}
               onChange={(e) => updateSection(aboutMeSection.id, { title: e.target.value })}
-              className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+              className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
             />
           </div>
 
@@ -161,7 +161,7 @@ export default function AboutSectionEditor() {
             {aboutMeSection.items.map((item, index) => (
               <div key={index} className="flex items-start gap-3">
                 <div className="flex-shrink-0 mt-3">
-                  <GripVertical className="w-5 h-5 text-gray-400" />
+                  <GripVertical className="w-5 h-5 text-soft-400" />
                 </div>
                 <div className="flex-1">
                   <textarea
@@ -169,7 +169,7 @@ export default function AboutSectionEditor() {
                     onChange={(e) => updateItem(aboutMeSection.id, index, e.target.value)}
                     rows={2}
                     placeholder={`Пункт ${index + 1}`}
-                    className="w-full px-4 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all resize-none text-gray-900 font-medium"
+                    className="w-full px-4 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all resize-none text-soft-900 font-medium"
                   />
                 </div>
                 <button
@@ -205,7 +205,7 @@ export default function AboutSectionEditor() {
               type="text"
               value={whyMeSection.title}
               onChange={(e) => updateSection(whyMeSection.id, { title: e.target.value })}
-              className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+              className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
             />
           </div>
 
@@ -227,7 +227,7 @@ export default function AboutSectionEditor() {
             {whyMeSection.items.map((item, index) => (
               <div key={index} className="flex items-start gap-3">
                 <div className="flex-shrink-0 mt-3">
-                  <GripVertical className="w-5 h-5 text-gray-400" />
+                  <GripVertical className="w-5 h-5 text-soft-400" />
                 </div>
                 <div className="flex-1">
                   <textarea
@@ -235,7 +235,7 @@ export default function AboutSectionEditor() {
                     onChange={(e) => updateItem(whyMeSection.id, index, e.target.value)}
                     rows={2}
                     placeholder={`Пункт ${index + 1}`}
-                    className="w-full px-4 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all resize-none text-gray-900 font-medium"
+                    className="w-full px-4 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all resize-none text-soft-900 font-medium"
                   />
                 </div>
                 <button

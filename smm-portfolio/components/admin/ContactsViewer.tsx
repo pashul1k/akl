@@ -69,7 +69,7 @@ export default function ContactsViewer() {
             Обращения
           </h2>
           {unreadCount > 0 && (
-            <p className="text-sm text-gray-900 font-bold mt-2">
+            <p className="text-sm text-soft-900 font-bold mt-2">
               Непрочитанных: {unreadCount}
             </p>
           )}
@@ -81,7 +81,7 @@ export default function ContactsViewer() {
             className={`px-6 py-3 rounded-2xl font-bold transition-all ${
               filter === 'all'
                 ? 'btn-gradient text-white shadow-glow'
-                : 'glass-card text-gray-900 hover:shadow-soft'
+                : 'glass-card text-soft-900 hover:shadow-soft'
             }`}
           >
             Все ({contacts.length})
@@ -91,7 +91,7 @@ export default function ContactsViewer() {
             className={`px-6 py-3 rounded-2xl font-bold transition-all ${
               filter === 'unread'
                 ? 'btn-gradient text-white shadow-glow'
-                : 'glass-card text-gray-900 hover:shadow-soft'
+                : 'glass-card text-soft-900 hover:shadow-soft'
             }`}
           >
             Непрочитанные ({unreadCount})
@@ -101,7 +101,7 @@ export default function ContactsViewer() {
 
       {filteredContacts.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-900 font-semibold">
+          <p className="text-soft-900 font-semibold">
             {filter === 'unread' ? 'Нет непрочитанных обращений' : 'Нет обращений'}
           </p>
         </div>
@@ -125,7 +125,7 @@ export default function ContactsViewer() {
                     {contact.name.charAt(0).toUpperCase()}
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 flex items-center gap-2 text-lg">
+                    <h3 className="font-bold text-soft-900 flex items-center gap-2 text-lg">
                       {contact.name}
                       {!contact.isRead && (
                         <span className="px-3 py-1 bg-gradient-to-r from-primary-600 to-secondary-600 text-white text-xs rounded-full font-bold">
@@ -133,7 +133,7 @@ export default function ContactsViewer() {
                         </span>
                       )}
                     </h3>
-                    <div className="flex items-center gap-4 text-sm text-gray-800 font-medium mt-1">
+                    <div className="flex items-center gap-4 text-sm text-soft-800 font-medium mt-1">
                       <span className="flex items-center gap-1">
                         <Clock className="w-4 h-4 text-primary-600" />
                         {formatDate(contact.createdAt)}
@@ -144,7 +144,7 @@ export default function ContactsViewer() {
               </div>
 
               <div className="space-y-2 mb-4">
-                <div className="flex items-center gap-2 text-gray-900 font-medium">
+                <div className="flex items-center gap-2 text-soft-900 font-medium">
                   <Mail className="w-4 h-4 text-primary-600" />
                   <a
                     href={`mailto:${contact.email}`}
@@ -154,7 +154,7 @@ export default function ContactsViewer() {
                   </a>
                 </div>
                 {contact.phone && (
-                  <div className="flex items-center gap-2 text-gray-900 font-medium">
+                  <div className="flex items-center gap-2 text-soft-900 font-medium">
                     <Phone className="w-4 h-4 text-primary-600" />
                     <a
                       href={`tel:${contact.phone}`}
@@ -167,7 +167,7 @@ export default function ContactsViewer() {
               </div>
 
               <div className="glass-card rounded-xl p-5 border-2 border-primary-100">
-                <p className="text-gray-900 whitespace-pre-wrap font-medium leading-relaxed">
+                <p className="text-soft-900 whitespace-pre-wrap font-medium leading-relaxed">
                   {contact.message}
                 </p>
               </div>

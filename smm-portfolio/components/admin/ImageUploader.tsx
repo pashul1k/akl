@@ -90,7 +90,7 @@ export default function ImageUploader({
 
   return (
     <div className="space-y-3">
-      <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+      <label className="block text-sm font-semibold text-soft-700 dark:text-gray-300">
         {label}
       </label>
 
@@ -161,10 +161,10 @@ export default function ImageUploader({
                   <div className="p-4 bg-primary-200 dark:bg-primary-800 rounded-full mb-3">
                     <Upload className="w-8 h-8 text-primary-600 dark:text-primary-400" />
                   </div>
-                  <p className="text-sm text-gray-700 dark:text-gray-300 font-medium mb-1">
+                  <p className="text-sm text-soft-700 dark:text-gray-300 font-medium mb-1">
                     Нажмите для загрузки
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-soft-500 dark:text-soft-400">
                     PNG, JPG, WEBP до 5MB
                   </p>
                 </>

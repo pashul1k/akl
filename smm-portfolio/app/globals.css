@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 51, 51, 51;
-  --background-start-rgb: 254, 241, 247;
-  --background-end-rgb: 250, 245, 255;
+  --foreground-rgb: 125, 115, 144;
+  --background-start-rgb: 255, 245, 247;
+  --background-end-rgb: 250, 247, 255;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 245, 245, 245;
-    --background-start-rgb: 30, 20, 30;
-    --background-end-rgb: 20, 15, 25;
+    --foreground-rgb: 211, 205, 217;
+    --background-start-rgb: 255, 245, 247;
+    --background-end-rgb: 250, 247, 255;
   }
 }
 
@@ -100,14 +100,14 @@ body {
 
 /* Градиентный текст */
 .gradient-text {
-  background: linear-gradient(135deg, #fb6fa1 0%, #d8b4fe 100%);
+  background: linear-gradient(135deg, #ff6b9d 0%, #c7a1ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-warm {
-  background: linear-gradient(135deg, #fda4c7 0%, #fdba74 100%);
+  background: linear-gradient(135deg, #ffb3d1 0%, #ffccb3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -115,14 +115,23 @@ body {
 
 /* Кнопка с мягким градиентом */
 .btn-gradient {
-  background: linear-gradient(135deg, #fda4c7 0%, #d8b4fe 100%);
-  box-shadow: 0 4px 15px rgba(251, 113, 133, 0.3);
+  background: linear-gradient(135deg, #ffb3d1 0%, #d9c2ff 100%);
+  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
   transition: all 0.3s ease;
 }
 
 .btn-gradient:hover {
-  box-shadow: 0 6px 25px rgba(251, 113, 133, 0.5);
+  box-shadow: 0 6px 25px rgba(255, 107, 157, 0.4);
   transform: translateY(-2px);
+}
+
+/* Стекляшки для карточек */
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 179, 209, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(255, 107, 157, 0.08);
 }
 
 /* Анимация появления */

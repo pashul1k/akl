@@ -94,7 +94,7 @@ export default function ProfileEditor() {
             type="text"
             value={profile.name}
             onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
           />
         </div>
 
@@ -107,7 +107,7 @@ export default function ProfileEditor() {
             type="number"
             value={profile.age}
             onChange={(e) => setProfile({ ...profile, age: parseInt(e.target.value) })}
-            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
           />
         </div>
 
@@ -120,7 +120,7 @@ export default function ProfileEditor() {
             type="text"
             value={profile.title}
             onChange={(e) => setProfile({ ...profile, title: e.target.value })}
-            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
           />
         </div>
 
@@ -133,7 +133,7 @@ export default function ProfileEditor() {
             value={profile.description}
             onChange={(e) => setProfile({ ...profile, description: e.target.value })}
             rows={4}
-            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all resize-none text-gray-900 font-medium"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all resize-none text-soft-900 font-medium"
           />
         </div>
 
@@ -146,7 +146,7 @@ export default function ProfileEditor() {
             type="text"
             value={profile.location}
             onChange={(e) => setProfile({ ...profile, location: e.target.value })}
-            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
           />
         </div>
 
@@ -175,7 +175,7 @@ export default function ProfileEditor() {
             type="text"
             value={profile.telegram}
             onChange={(e) => setProfile({ ...profile, telegram: e.target.value })}
-            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
             placeholder="@username"
           />
         </div>
@@ -188,7 +188,7 @@ export default function ProfileEditor() {
             type="text"
             value={profile.instagram}
             onChange={(e) => setProfile({ ...profile, instagram: e.target.value })}
-            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
             placeholder="@username"
           />
         </div>
@@ -201,7 +201,7 @@ export default function ProfileEditor() {
             type="text"
             value={profile.threads}
             onChange={(e) => setProfile({ ...profile, threads: e.target.value })}
-            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
             placeholder="@username"
           />
         </div>
@@ -214,7 +214,7 @@ export default function ProfileEditor() {
             type="email"
             value={profile.email}
             onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-gray-900 font-medium"
+            className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
           />
         </div>
       </div>

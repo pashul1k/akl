@@ -174,7 +174,7 @@ export default function Hero({ profile }: HeroProps) {
               transition={{ delay: 0.4 }}
               className="mb-6"
             >
-              <p className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-2">
+              <p className="text-2xl md:text-3xl lg:text-4xl font-semibold text-soft-900 mb-2">
                 {profile.title}
               </p>
               <div className="flex items-center justify-center md:justify-start gap-2">
@@ -188,7 +188,7 @@ export default function Hero({ profile }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="text-lg md:text-xl text-gray-800 mb-10 leading-relaxed font-medium"
+              className="text-lg md:text-xl text-soft-800 mb-10 leading-relaxed font-medium"
             >
               {profile.description}
             </motion.p>
@@ -309,7 +309,7 @@ export default function Hero({ profile }: HeroProps) {
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
         onClick={() => window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })}
       >
-        <span className="text-sm font-bold text-gray-800">Узнать больше</span>
+        <span className="text-sm font-bold text-soft-800">Узнать больше</span>
         <div className="p-2 rounded-full glass-hover">
           <ArrowDown className="w-5 h-5 text-primary-700" />
         </div>
