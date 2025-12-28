@@ -3,46 +3,33 @@
 import { motion } from 'framer-motion'
 import { Heart, Brain, Users, Sparkles, Target, TrendingUp } from 'lucide-react'
 
-const features = [
-  {
-    icon: Brain,
-    title: 'Психология продаж',
-    description: 'Понимаю мотивацию вашей аудитории и создаю контент, который влюбляет в продукт',
-    color: 'from-primary-500 to-primary-600'
-  },
-  {
-    icon: Heart,
-    title: 'Эмпатия к клиенту',
-    description: 'Вникаю в специфику вашего бизнеса и чувствую, что нужно вашим клиентам',
-    color: 'from-secondary-500 to-secondary-600'
-  },
-  {
-    icon: Users,
-    title: 'Человечный подход',
-    description: 'Не просто цифры и охваты - строю настоящие отношения между брендом и людьми',
-    color: 'from-peach-500 to-peach-600'
-  },
-  {
-    icon: Target,
-    title: 'Точность стратегии',
-    description: 'Каждое действие обосновано - никакого хаоса, только продуманная работа',
-    color: 'from-primary-400 to-secondary-400'
-  },
-  {
-    icon: TrendingUp,
-    title: 'Реальные результаты',
-    description: 'Рост продаж и вовлеченности уже в первый месяц - проверено клиентами',
-    color: 'from-secondary-400 to-primary-400'
-  },
-  {
-    icon: Sparkles,
-    title: 'Креатив с душой',
-    description: 'Контент, который не просто красивый, но трогает сердца и мотивирует к действию',
-    color: 'from-peach-400 to-primary-400'
-  }
-]
+const iconMap: { [key: string]: any } = {
+  Brain,
+  Heart,
+  Users,
+  Sparkles,
+  Target,
+  TrendingUp
+}
 
-export default function About() {
+interface AboutProps {
+  data: {
+    title: string
+    items: string[]
+  }
+}
+
+export default function About({ data }: AboutProps) {
+  // Иконки и цвета для каждого пункта
+  const icons = [Brain, Heart, Users, Target, TrendingUp, Sparkles]
+  const colors = [
+    'from-primary-500 to-primary-600',
+    'from-secondary-500 to-secondary-600',
+    'from-peach-500 to-peach-600',
+    'from-primary-400 to-secondary-400',
+    'from-secondary-400 to-primary-400',
+    'from-peach-400 to-primary-400'
+  ]
   return (
     <section id="about" className="py-24 relative overflow-hidden">
       {/* Background */}
@@ -83,7 +70,7 @@ export default function About() {
           >
             <Heart className="w-10 h-10 text-primary-500 fill-current animate-pulse-soft" />
             <h2 className="text-4xl md:text-5xl font-bold gradient-text">
-              Почему именно я?
+              {data.title}
             </h2>
             <Brain className="w-10 h-10 text-secondary-500 animate-pulse-soft" />
           </motion.div>
@@ -103,29 +90,29 @@ export default function About() {
 
         {/* Features grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -10 }}
-              className="glass-card p-6 rounded-3xl shadow-soft hover:shadow-glow transition-all duration-500 group"
-            >
-              <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} mb-4 shadow-soft group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
-                <feature.icon className="w-8 h-8 text-white" />
-              </div>
+          {data.items.map((item, index) => {
+            const Icon = icons[index % icons.length] || Sparkles
+            const color = colors[index % colors.length]
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.05, y: -10 }}
+                className="glass-card p-6 rounded-3xl shadow-soft hover:shadow-glow transition-all duration-500 group"
+              >
+                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${color} mb-4 shadow-soft group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
+                  <Icon className="w-8 h-8 text-white" />
+                </div>
 
-              <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:gradient-text transition-all">
-                {feature.title}
-              </h3>
-
-              <p className="text-gray-800 leading-relaxed font-medium">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
+                <p className="text-gray-900 leading-relaxed font-medium text-lg">
+                  {item}
+                </p>
+              </motion.div>
+            )
+          })}
         </div>
 
         {/* Quote section */}

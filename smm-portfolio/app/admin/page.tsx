@@ -4,13 +4,14 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { LogOut, User, Briefcase, Mail, Home, Sparkles } from 'lucide-react'
+import { LogOut, User, Briefcase, Mail, Home, Sparkles, FileText } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 import ProfileEditor from '@/components/admin/ProfileEditor'
 import PortfolioEditor from '@/components/admin/PortfolioEditor'
 import ContactsViewer from '@/components/admin/ContactsViewer'
+import AboutSectionEditor from '@/components/admin/AboutSectionEditor'
 
-type Tab = 'profile' | 'portfolio' | 'contacts'
+type Tab = 'profile' | 'portfolio' | 'contacts' | 'about'
 
 export default function AdminPage() {
   const { data: session, status } = useSession()
@@ -40,6 +41,7 @@ export default function AdminPage() {
 
   const tabs = [
     { id: 'profile' as Tab, label: 'Профиль', icon: User },
+    { id: 'about' as Tab, label: 'О себе', icon: FileText },
     { id: 'portfolio' as Tab, label: 'Портфолио', icon: Briefcase },
     { id: 'contacts' as Tab, label: 'Обращения', icon: Mail },
   ]
@@ -130,6 +132,7 @@ export default function AdminPage() {
           transition={{ duration: 0.4, type: "spring" }}
         >
           {activeTab === 'profile' && <ProfileEditor />}
+          {activeTab === 'about' && <AboutSectionEditor />}
           {activeTab === 'portfolio' && <PortfolioEditor />}
           {activeTab === 'contacts' && <ContactsViewer />}
         </motion.div>

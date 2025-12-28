@@ -65,3 +65,14 @@ model ContactForm {
 
   createdAt  DateTime @default(now())
 }
+
+// Редактируемые секции About
+model AboutSection {
+  id        String   @id @default(cuid())
+  type      String   // 'aboutMe' или 'whyMe'
+  title     String
+  items     String   // JSON массив строк
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
