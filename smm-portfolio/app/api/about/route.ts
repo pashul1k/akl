@@ -41,7 +41,13 @@ export async function GET() {
       sections = await prisma.aboutSection.findMany()
     }
 
-    return NextResponse.json(sections)
+    // Преобразовать JSON строки в массивы
+    const parsedSections = sections.map(section => ({
+      ...section,
+      items: JSON.parse(section.items)
+    }))
+
+    return NextResponse.json(parsedSections)
   } catch (error) {
     console.error('Error fetching about sections:', error)
     return NextResponse.json({ error: 'Failed to fetch sections' }, { status: 500 })
