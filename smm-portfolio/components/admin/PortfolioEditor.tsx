@@ -2,18 +2,17 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Plus, Edit2, Trash2, Save, X } from 'lucide-react'
+import { Plus, Edit2, Trash2, Save, X, ImagePlus, ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 import ImageUploader from './ImageUploader'
 
 interface PortfolioItem {
   id: string
-  title: string
-  description: string
-  image: string
+  postTitle: string
+  images: string[]
+  workDescription: string
+  postLink?: string | null
   category: string
-  clientName?: string | null
-  result?: string | null
   order: number
 }
 
@@ -42,12 +41,11 @@ export default function PortfolioEditor() {
   const handleAdd = () => {
     setEditingId('new')
     setFormData({
-      title: '',
-      description: '',
-      image: '',
+      postTitle: '',
+      images: [],
+      workDescription: '',
+      postLink: '',
       category: 'Instagram',
-      clientName: '',
-      result: '',
       order: items.length,
     })
   }
@@ -104,6 +102,31 @@ export default function PortfolioEditor() {
     }
   }
 
+  const addImage = () => {
+    setFormData({
+      ...formData,
+      images: [...(formData.images || []), '']
+    })
+  }
+
+  const updateImage = (index: number, url: string) => {
+    const newImages = [...(formData.images || [])]
+    newImages[index] = url
+    setFormData({
+      ...formData,
+      images: newImages
+    })
+  }
+
+  const removeImage = (index: number) => {
+    const newImages = [...(formData.images || [])]
+    newImages.splice(index, 1)
+    setFormData({
+      ...formData,
+      images: newImages
+    })
+  }
+
   if (loading) {
     return (
       <div className="flex items-center justify-center p-12">
@@ -150,19 +173,22 @@ export default function PortfolioEditor() {
             </button>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-6">
+            {/* Post Title */}
             <div>
               <label className="block text-sm font-bold text-primary-700 mb-2">
-                Название
+                Что за пост
               </label>
               <input
                 type="text"
-                value={formData.title || ''}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                value={formData.postTitle || ''}
+                onChange={(e) => setFormData({ ...formData, postTitle: e.target.value })}
+                placeholder="Например: Продвижение кофейни в Instagram"
                 className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
               />
             </div>
 
+            {/* Category */}
             <div>
               <label className="block text-sm font-bold text-primary-700 mb-2">
                 Категория
@@ -179,56 +205,100 @@ export default function PortfolioEditor() {
               </select>
             </div>
 
-            <div className="md:col-span-2">
+            {/* Work Description */}
+            <div>
               <label className="block text-sm font-bold text-primary-700 mb-2">
-                Описание
+                В чем заключалась работа Марго
               </label>
               <textarea
-                value={formData.description || ''}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                rows={3}
+                value={formData.workDescription || ''}
+                onChange={(e) => setFormData({ ...formData, workDescription: e.target.value })}
+                rows={5}
+                placeholder="Опишите детально, какую работу провела Марго для этого проекта..."
                 className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all resize-none text-soft-900 font-medium"
               />
             </div>
 
-            <div className="md:col-span-2">
-              <ImageUploader
-                currentImage={formData.image || ''}
-                onImageChange={(url) => setFormData({ ...formData, image: url })}
-                label="Изображение проекта"
-                aspectRatio="aspect-video"
-              />
-            </div>
-
+            {/* Post Link */}
             <div>
               <label className="block text-sm font-bold text-primary-700 mb-2">
-                Клиент
+                Ссылка на пост (опционально)
               </label>
-              <input
-                type="text"
-                value={formData.clientName || ''}
-                onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
-                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
-              />
+              <div className="relative">
+                <ExternalLink className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary-500" />
+                <input
+                  type="url"
+                  value={formData.postLink || ''}
+                  onChange={(e) => setFormData({ ...formData, postLink: e.target.value })}
+                  placeholder="https://instagram.com/p/..."
+                  className="w-full pl-12 pr-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
+                />
+              </div>
             </div>
 
-            <div className="md:col-span-2">
-              <label className="block text-sm font-bold text-primary-700 mb-2">
-                Результаты
-              </label>
-              <input
-                type="text"
-                value={formData.result || ''}
-                onChange={(e) => setFormData({ ...formData, result: e.target.value })}
-                className="w-full px-5 py-3 glass-card border-2 border-primary-200 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-400 transition-all text-soft-900 font-medium"
-                placeholder="+300% охватов, +150% конверсия"
-              />
+            {/* Images */}
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <label className="block text-sm font-bold text-primary-700">
+                  Фотографии проекта ({(formData.images || []).length})
+                </label>
+                <button
+                  type="button"
+                  onClick={addImage}
+                  className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary-400 to-secondary-400 text-white rounded-xl font-semibold hover:scale-105 transition-all text-sm"
+                >
+                  <ImagePlus className="w-4 h-4" />
+                  Добавить фото
+                </button>
+              </div>
+
+              {(formData.images || []).length === 0 ? (
+                <div className="text-center py-8 border-2 border-dashed border-primary-300 rounded-xl">
+                  <p className="text-soft-600 mb-3 font-medium">Нет загруженных фотографий</p>
+                  <button
+                    type="button"
+                    onClick={addImage}
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-primary-100 text-primary-700 rounded-lg hover:bg-primary-200 transition-colors font-semibold"
+                  >
+                    <ImagePlus className="w-4 h-4" />
+                    Добавить первое фото
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {(formData.images || []).map((imageUrl, index) => (
+                    <div key={index} className="relative">
+                      <div className="flex items-center gap-3">
+                        <span className="flex-shrink-0 w-8 h-8 bg-primary-500 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                          {index + 1}
+                        </span>
+                        <div className="flex-1">
+                          <ImageUploader
+                            currentImage={imageUrl}
+                            onImageChange={(url) => updateImage(index, url)}
+                            label={`Фото ${index + 1}`}
+                            aspectRatio="aspect-video"
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => removeImage(index)}
+                          className="flex-shrink-0 p-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-all"
+                        >
+                          <X className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
           <button
             onClick={handleSave}
-            className="mt-6 flex items-center gap-2 px-8 py-4 btn-gradient text-white rounded-2xl font-bold hover:shadow-glow hover:scale-105 transition-all text-lg"
+            disabled={!formData.postTitle || !formData.workDescription}
+            className="mt-6 flex items-center gap-2 px-8 py-4 btn-gradient text-white rounded-2xl font-bold hover:shadow-glow hover:scale-105 transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Save className="w-5 h-5" />
             Сохранить
@@ -245,13 +315,24 @@ export default function PortfolioEditor() {
             className="bg-gray-50 dark:bg-soft-700 rounded-xl overflow-hidden"
           >
             <div className="relative aspect-video bg-primary-100 dark:bg-soft-600">
-              {item.image && (
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                />
+              {item.images && item.images.length > 0 ? (
+                <>
+                  <Image
+                    src={item.images[0]}
+                    alt={item.postTitle}
+                    fill
+                    className="object-cover"
+                  />
+                  {item.images.length > 1 && (
+                    <div className="absolute top-2 right-2 px-2 py-1 bg-black/70 backdrop-blur-sm rounded-lg text-white text-xs font-bold">
+                      {item.images.length} фото
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center text-soft-400">
+                  <ImagePlus className="w-12 h-12" />
+                </div>
               )}
             </div>
 
@@ -259,7 +340,7 @@ export default function PortfolioEditor() {
               <div className="flex items-start justify-between mb-2">
                 <div>
                   <h3 className="font-bold text-soft-900">
-                    {item.title}
+                    {item.postTitle}
                   </h3>
                   <p className="text-sm text-soft-800 font-semibold">
                     {item.category}
@@ -268,8 +349,20 @@ export default function PortfolioEditor() {
               </div>
 
               <p className="text-sm text-soft-800 mb-4 line-clamp-2 font-medium">
-                {item.description}
+                {item.workDescription}
               </p>
+
+              {item.postLink && (
+                <a
+                  href={item.postLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-primary-600 hover:text-primary-700 mb-3 font-semibold"
+                >
+                  <ExternalLink className="w-3 h-3" />
+                  Ссылка на пост
+                </a>
+              )}
 
               <div className="flex gap-2">
                 <button

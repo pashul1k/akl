@@ -7,7 +7,13 @@ export async function GET() {
       orderBy: { order: 'asc' },
     })
 
-    return NextResponse.json(items)
+    // Парсить JSON строки в массивы для images
+    const parsedItems = items.map(item => ({
+      ...item,
+      images: JSON.parse(item.images)
+    }))
+
+    return NextResponse.json(parsedItems)
   } catch (error) {
     console.error('Error fetching portfolio:', error)
     return NextResponse.json({ error: 'Failed to fetch portfolio' }, { status: 500 })
@@ -17,11 +23,22 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const data = await request.json()
+
+    // Сериализовать images в JSON если это массив
+    const portfolioData = {
+      ...data,
+      images: Array.isArray(data.images) ? JSON.stringify(data.images) : data.images
+    }
+
     const item = await prisma.portfolio.create({
-      data,
+      data: portfolioData,
     })
 
-    return NextResponse.json(item)
+    // Вернуть с парсингом images
+    return NextResponse.json({
+      ...item,
+      images: JSON.parse(item.images)
+    })
   } catch (error) {
     console.error('Error creating portfolio item:', error)
     return NextResponse.json({ error: 'Failed to create portfolio item' }, { status: 500 })

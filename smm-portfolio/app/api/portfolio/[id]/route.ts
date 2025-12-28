@@ -7,12 +7,23 @@ export async function PUT(
 ) {
   try {
     const data = await request.json()
+
+    // Сериализовать images в JSON если это массив
+    const portfolioData = {
+      ...data,
+      images: Array.isArray(data.images) ? JSON.stringify(data.images) : data.images
+    }
+
     const item = await prisma.portfolio.update({
       where: { id: params.id },
-      data,
+      data: portfolioData,
     })
 
-    return NextResponse.json(item)
+    // Вернуть с парсингом images
+    return NextResponse.json({
+      ...item,
+      images: JSON.parse(item.images)
+    })
   } catch (error) {
     console.error('Error updating portfolio item:', error)
     return NextResponse.json(

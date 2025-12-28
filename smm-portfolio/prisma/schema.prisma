@@ -40,17 +40,16 @@ model Profile {
 }
 
 model Portfolio {
-  id          String   @id @default(cuid())
-  title       String
-  description String
-  image       String
-  category    String   // например: "Instagram", "Telegram", "Threads"
-  clientName  String?
-  result      String?  // результаты работы
-  order       Int      @default(0) // для сортировки
+  id              String   @id @default(cuid())
+  postTitle       String   // Что за пост
+  images          String   // JSON массив путей к изображениям
+  workDescription String   // В чем заключалась работа Марго
+  postLink        String?  // Ссылка на пост (опционально)
+  category        String   // например: "Instagram", "Telegram", "Threads"
+  order           Int      @default(0) // для сортировки
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model ContactForm {

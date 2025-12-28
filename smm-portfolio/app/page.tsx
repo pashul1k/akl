@@ -30,7 +30,11 @@ async function getPortfolio() {
     orderBy: { order: 'asc' },
   })
 
-  return items
+  // Парсить JSON строки в массивы для images
+  return items.map(item => ({
+    ...item,
+    images: JSON.parse(item.images)
+  }))
 }
 
 async function getAboutSections() {
