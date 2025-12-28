@@ -1,43 +1,84 @@
 <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#fda4af;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#f9a8d4;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#d8b4fe;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#fb6fa1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f472b6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c084fc;stop-opacity:1" />
     </linearGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <linearGradient id="wing-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ec4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#fb6fa1" flood-opacity="0.4"/>
     </filter>
   </defs>
 
-  <!-- Бабочка как символ трансформации -->
-  <!-- Левое крыло -->
-  <path d="M 40 60 Q 20 40 25 25 Q 30 15 40 20 Q 45 30 40 45 Q 38 52 40 60 Z"
-        fill="url(#logo-gradient)" opacity="0.9" filter="url(#glow)"/>
-  <path d="M 40 60 Q 25 70 20 80 Q 18 90 28 92 Q 35 88 38 78 Q 39 68 40 60 Z"
-        fill="url(#logo-gradient)" opacity="0.8" filter="url(#glow)"/>
+  <!-- Бабочка - символ трансформации -->
+  <!-- Левое верхнее крыло -->
+  <path d="M 60 60 Q 35 35 30 20 Q 28 10 35 8 Q 45 10 50 25 Q 55 40 60 60 Z"
+        fill="url(#wing-gradient)"
+        stroke="#e11d68"
+        stroke-width="1.5"
+        filter="url(#shadow)"/>
 
-  <!-- Правое крыло -->
-  <path d="M 80 60 Q 100 40 95 25 Q 90 15 80 20 Q 75 30 80 45 Q 82 52 80 60 Z"
-        fill="url(#logo-gradient)" opacity="0.9" filter="url(#glow)"/>
-  <path d="M 80 60 Q 95 70 100 80 Q 102 90 92 92 Q 85 88 82 78 Q 81 68 80 60 Z"
-        fill="url(#logo-gradient)" opacity="0.8" filter="url(#glow)"/>
+  <!-- Левое нижнее крыло -->
+  <path d="M 60 60 Q 35 75 25 85 Q 20 95 28 98 Q 38 96 48 82 Q 56 70 60 60 Z"
+        fill="url(#wing-gradient)"
+        stroke="#e11d68"
+        stroke-width="1.5"
+        filter="url(#shadow)"/>
 
-  <!-- Тело бабочки - сердце -->
-  <path d="M 60 35 Q 52 28 45 30 Q 40 35 42 42 Q 45 48 60 65 Q 75 48 78 42 Q 80 35 75 30 Q 68 28 60 35 Z"
-        fill="url(#logo-gradient)" filter="url(#glow)"/>
+  <!-- Правое верхнее крыло -->
+  <path d="M 60 60 Q 85 35 90 20 Q 92 10 85 8 Q 75 10 70 25 Q 65 40 60 60 Z"
+        fill="url(#wing-gradient)"
+        stroke="#e11d68"
+        stroke-width="1.5"
+        filter="url(#shadow)"/>
+
+  <!-- Правое нижнее крыло -->
+  <path d="M 60 60 Q 85 75 95 85 Q 100 95 92 98 Q 82 96 72 82 Q 64 70 60 60 Z"
+        fill="url(#wing-gradient)"
+        stroke="#e11d68"
+        stroke-width="1.5"
+        filter="url(#shadow)"/>
+
+  <!-- Тело бабочки - сердце в центре -->
+  <ellipse cx="60" cy="60" rx="8" ry="30"
+           fill="url(#logo-gradient)"
+           stroke="#be185d"
+           stroke-width="2"
+           filter="url(#shadow)"/>
+
+  <!-- Голова -->
+  <circle cx="60" cy="40" r="6"
+          fill="url(#logo-gradient)"
+          stroke="#be185d"
+          stroke-width="1.5"/>
 
   <!-- Усики -->
-  <path d="M 55 25 Q 52 18 48 15" stroke="url(#logo-gradient)" stroke-width="2" stroke-linecap="round" fill="none"/>
-  <path d="M 65 25 Q 68 18 72 15" stroke="url(#logo-gradient)" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M 57 35 Q 53 28 50 22"
+        stroke="#be185d"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        fill="none"/>
+  <path d="M 63 35 Q 67 28 70 22"
+        stroke="#be185d"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        fill="none"/>
 
-  <!-- Декоративные точки -->
-  <circle cx="30" cy="35" r="3" fill="#fda4af" opacity="0.6"/>
-  <circle cx="90" cy="35" r="3" fill="#d8b4fe" opacity="0.6"/>
-  <circle cx="32" cy="75" r="2.5" fill="#f9a8d4" opacity="0.6"/>
-  <circle cx="88" cy="75" r="2.5" fill="#fda4af" opacity="0.6"/>
+  <!-- Точки на усиках -->
+  <circle cx="50" cy="22" r="2.5" fill="#ec4899"/>
+  <circle cx="70" cy="22" r="2.5" fill="#a855f7"/>
+
+  <!-- Декоративные элементы на крыльях -->
+  <circle cx="40" cy="35" r="4" fill="#fda4c7" opacity="0.8"/>
+  <circle cx="80" cy="35" r="4" fill="#d8b4fe" opacity="0.8"/>
+  <circle cx="38" cy="75" r="3.5" fill="#fb923c" opacity="0.8"/>
+  <circle cx="82" cy="75" r="3.5" fill="#fda4c7" opacity="0.8"/>
+
+  <!-- Маленькие акценты -->
+  <circle cx="48" cy="50" r="2" fill="#ffffff" opacity="0.6"/>
+  <circle cx="72" cy="50" r="2" fill="#ffffff" opacity="0.6"/>
 </svg>
